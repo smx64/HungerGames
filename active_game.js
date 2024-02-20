@@ -15,7 +15,8 @@ let gameMakerField;
 let gameMakerKeyValue;
 let gameMakerButton;
 
-let timer = 1000;
+let timer_countdown = 1000;
+let timer_game = 650;
 let eventChange = 0;
 
 let countdownFont;
@@ -340,7 +341,14 @@ function draw()
         }
       }
 
-      eventChange = millis()+timer;
+      if(countdownScreen < countdownArray.length)
+      {
+        eventChange = millis()+timer_countdown;
+      }
+      else
+      {
+        eventChange = millis()+timer_game;
+      }
       detectVictor();
     }
   }
@@ -368,8 +376,40 @@ function detectVictor()
         
         fill(255);
         textSize(32);
-        text("WINNER: D"+tributeArray[i].districtID_Tribute, width/2, height/2);
+        text("VICTOR: District "+tributeArray[i].districtID_Tribute, width/2, height/2);
       }
+    }
+
+    noLoop();
+  }
+  //code to check whether remaining "Tributes" are from the same district
+  else if(totalTributes==2)
+  {
+    fill(0,150);
+    rect(0,0,width,height);
+
+    let remaininigTribute = [];
+    for(let i=0; i<tributeArray.length; i++)
+    {
+      if(tributeArray[i].rad_Tribute!=0)
+      {
+        remaininigTribute.push(tributeArray[i]);
+      }
+    }
+
+    if(remaininigTribute[0].districtID_Tribute==remaininigTribute[1].districtID_Tribute)
+    {
+      fill(255);
+      noStroke();
+      textAlign(CENTER,CENTER);
+
+      fill(0,255,0);
+      textSize(75);
+      text("-| HUNGER GAMES |-", width/2, height/4);
+      
+      fill(255);
+      textSize(32);
+      text("VICTOR: District "+remaininigTribute[0].districtID_Tribute, width/2, height/2); 
     }
 
     noLoop();
