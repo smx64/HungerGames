@@ -385,9 +385,6 @@ function detectVictor()
   //code to check whether remaining "Tributes" are from the same district
   else if(totalTributes==2)
   {
-    fill(0,150);
-    rect(0,0,width,height);
-
     let remaininigTribute = [];
     for(let i=0; i<tributeArray.length; i++)
     {
@@ -399,6 +396,9 @@ function detectVictor()
 
     if(remaininigTribute[0].districtID_Tribute==remaininigTribute[1].districtID_Tribute)
     {
+      fill(0,150);
+      rect(0,0,width,height);
+
       fill(255);
       noStroke();
       textAlign(CENTER,CENTER);
@@ -409,10 +409,10 @@ function detectVictor()
       
       fill(255);
       textSize(32);
-      text("VICTOR: District "+remaininigTribute[0].districtID_Tribute, width/2, height/2); 
-    }
+      text("VICTOR: District "+remaininigTribute[0].districtID_Tribute, width/2, height/2);
 
-    noLoop();
+      noLoop();
+    }    
   }
 }
 
